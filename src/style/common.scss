@@ -1,0 +1,59 @@
+@use "./variables.scss" as v;
+
+html {
+  font-family: ambroise-firmin-std, YuMincho, "Yu Mincho", serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 62.5%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #121212;
+  margin: 0 auto;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+* {
+  color: v.$primary;
+  font-weight: 500;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 11.5rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+p,
+a,
+span,
+ul {
+  font-size: 1.6rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.header-menu {
+  li:first-of-type {
+    margin-right: 24px;
+  }
+}

@@ -1,0 +1,96 @@
+<section id="fv" class="relative">
+  <div class="flex justify-center relative wrapper">
+    <img
+      class="main-arm absolute"
+      src="../../../public/images/arm_and_sign.png"
+      alt=""
+    />
+    <div class="absolute my-title">
+      <h2>Web Front-End Developer<br />& Doujin Creator</h2>
+      <p class="attr">Illustration: Graphic Design : Manga</p>
+      <span class="arrow down"></span>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../style/variables.scss" as v;
+  $header_height: 172px;
+
+  #fv {
+    height: 750px;
+
+    .main-arm {
+      width: 480px;
+      top: calc((-1 * ($header_height)) - 160px);
+      left: 140px;
+      z-index: -1;
+    }
+
+    .wrapper {
+      margin-right: 40px;
+    }
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  .my-title {
+    right: 0;
+    height: calc(660px - $header_height);
+  }
+
+  .attr::before {
+    content: "{";
+    padding-right: 2px;
+  }
+
+  .attr::after {
+    content: "}";
+    padding-left: 2px;
+  }
+
+  .arrow {
+    position: absolute;
+    display: inline-block;
+    padding: 0;
+    color: v.$primary;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 15px;
+    right: 0;
+    bottom: 0;
+    width: 10px;
+  }
+
+  .arrow::before,
+  .arrow::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    content: "";
+    vertical-align: middle;
+  }
+
+  .down::before {
+    left: -25px;
+    width: 60px;
+    height: 1px;
+    top: -53px;
+    background: v.$primary;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  .down::after {
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid v.$primary;
+    border-right: 1px solid v.$primary;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+</style>

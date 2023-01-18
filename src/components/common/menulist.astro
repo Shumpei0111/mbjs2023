@@ -1,0 +1,16 @@
+---
+export interface Props {
+  className: string;
+}
+
+const { className } = Astro.props;
+---
+
+<ul class={`flex ${className}`}>
+  <li>
+    <a href="/">ABOUT</a>
+  </li>
+  <li>
+    <a href="/">BLOG</a>
+  </li>
+</ul>

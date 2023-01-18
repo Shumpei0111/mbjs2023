@@ -1,0 +1,24 @@
+---
+import Menulist from "../common/menulist.astro";
+---
+
+<header class="g-header flex space-between">
+  <div class="flex align-baseline">
+    <h1>MB.js</h1>
+    <p class="head-caption">Shumpei's Portfolio site</p>
+  </div>
+  <div>
+    <Menulist className="header-menu" />
+  </div>
+</header>
+
+<style lang="scss">
+  .g-header {
+    margin: 0 40px;
+  }
+
+  .head-caption {
+    font-size: 1.6rem;
+    margin-left: 16px;
+  }
+</style>

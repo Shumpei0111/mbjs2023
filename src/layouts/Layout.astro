@@ -1,6 +1,11 @@
 ---
-import GlobalHeader from "../components/global/header";
+import GlobalHeader from "../components/global/header.astro";
+import GlobalFooter from "../components/global/footer.astro";
+
 import "modern-css-reset";
+import "../style/common.scss";
+import "../style/utls.scss";
+import "../style/bg.scss";
 
 export interface Props {
   title: string;
@@ -20,12 +25,9 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <div class="noise"></div>
     <GlobalHeader />
     <slot />
+    <GlobalFooter />
   </body>
 </html>
-<style is:global>
-  html {
-    font-family: ambroise-firmin-std, YuMincho, "Yu Mincho", serif;
-  }
-</style>

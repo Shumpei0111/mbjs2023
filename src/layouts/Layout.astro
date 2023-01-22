@@ -1,6 +1,7 @@
 ---
 import GlobalHeader from "../components/global/header.astro";
 import GlobalFooter from "../components/global/footer.astro";
+import Load from "../components/load.astro";
 
 import "modern-css-reset";
 import "../style/common.scss";
@@ -25,6 +26,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <!-- <Load client:load /> -->
     <div class="noise"></div>
     <GlobalHeader />
     <slot />

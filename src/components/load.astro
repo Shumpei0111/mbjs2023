@@ -1,0 +1,85 @@
+<div class="container">
+  <div id="loadIndicator">
+    <div id="indicator"></div>
+  </div>
+  <div id="loadCounter" class="lower">0</div>
+</div>
+
+<script>
+  const $counter = document.getElementById("loadCounter");
+  const $loadIndicator = document.getElementById("loadIndicator");
+  const $indicator = document.getElementById("indicator");
+  const $fv = document.getElementById("fv");
+
+  const wait = async (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  window.addEventListener(
+    "load",
+    () => {
+      if (!$counter || !$loadIndicator || !$fv || !$indicator) return;
+
+      const url = new URL(window.location.href);
+      if (url.pathname !== "/") return;
+
+      (async () => {
+        let count = 0;
+
+        let id = setInterval(() => {
+          if (count === 100) {
+            clearInterval(id);
+
+            setTimeout(() => {
+              $counter.classList.add("load-complete");
+              $loadIndicator.classList.add("load-complete");
+              $fv.classList.add("show-content");
+            }, 200);
+          }
+          const txt = count++;
+          $counter.textContent = String(txt);
+          $indicator.style.width = `${txt}%`;
+        }, 10);
+      })();
+    },
+    false
+  );
+</script>
+
+<style lang="scss">
+  @use "../style/variables.scss" as v;
+
+  .container {
+    height: 100vh;
+    width: 100vw;
+    font-size: 20rem;
+    position: fixed;
+  }
+
+  .upper {
+    height: 50vh !important;
+    position: relative !important;
+    background-color: v.$primary;
+
+    width: 50vw;
+  }
+
+  #loadIndicator {
+    height: 50vh;
+    background-color: v.$primary;
+  }
+
+  #indicator {
+    background-color: black;
+    height: 50vh;
+  }
+
+  .lower {
+    background-color: v.$primary;
+    color: black;
+    height: 50vh;
+  }
+
+  .load-complete {
+    display: none;
+  }
+</style>

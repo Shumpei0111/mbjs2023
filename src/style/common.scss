@@ -9,12 +9,16 @@ html {
   overflow-x: hidden;
   background-color: #121212;
   margin: 0 auto;
+  max-width: 1280px;
 }
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 1280px;
+  min-width: 375px;
+  margin: 0 auto;
 }
 
 footer {

@@ -1,0 +1,191 @@
+---
+type Props = {
+  text: string;
+  isShowSeparate: boolean;
+  isBelt?: boolean;
+};
+
+const { text, isShowSeparate, isBelt } = Astro.props;
+---
+
+<div class="relative">
+  <div class={`container ${isBelt ? "belt" : ""}`}>
+    <div class="inner">
+      <p class="content">
+        {text}{
+          isShowSeparate ? (
+            <span class="separate">/</span>
+          ) : (
+            <span class="empMargin" />
+          )
+        }
+      </p>
+      <p class="content">
+        {text}{
+          isShowSeparate ? (
+            <span class="separate">/</span>
+          ) : (
+            <span class="empMargin" />
+          )
+        }
+      </p>
+      <p class="content">
+        {text}{
+          isShowSeparate ? (
+            <span class="separate">/</span>
+          ) : (
+            <span class="empMargin" />
+          )
+        }
+      </p>
+      <p class="content">
+        {text}{
+          isShowSeparate ? (
+            <span class="separate">/</span>
+          ) : (
+            <span class="empMargin" />
+          )
+        }
+      </p>
+    </div>
+  </div>
+  {
+    isBelt && (
+      <div id="parent" class="parent">
+        <div class={`container belt turnRight absolute`}>
+          <div class="inner">
+            <p class="content">{text}</p>
+            <p class="content">{text}</p>
+            <p class="content">{text}</p>
+            <p class="content">{text}</p>
+            <p class="content">{text}</p>
+            <p class="content">{text}</p>
+            <p class="content">{text}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<script>
+  const $parent = document.getElementById("parent");
+  $parent &&
+    setTimeout(() => {
+      $parent.style.width = `${window.outerWidth + window.innerWidth}px`;
+      $parent.style.display = `block`;
+    }, 20);
+</script>
+
+<style lang="scss">
+  @use "../../style/variables.scss" as v;
+  .belt {
+    &.container {
+      .inner {
+        background-color: v.$primary;
+
+        .content {
+          color: black;
+        }
+      }
+    }
+  }
+
+  .container {
+    height: 100%;
+    width: 100vw;
+    margin: 0 calc(-50vw + 50%) 0;
+
+    .inner {
+      margin: 2rem 0;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .content {
+      display: inline-block;
+      white-space: nowrap;
+      will-change: transform;
+      animation: marquee 4s linear infinite;
+      animation-play-state: running;
+      font-size: 16rem;
+    }
+  }
+
+  .parent {
+    display: none;
+    border: 1px solid black;
+    transform: rotate(8deg);
+    overflow: hidden;
+    height: 240px;
+    right: -100vw;
+    bottom: -10rem;
+    position: absolute;
+    background-color: v.$primary;
+    margin: 0 calc(100vw - 50%);
+  }
+
+  .turnRight {
+    width: 200vw;
+    bottom: 0;
+    height: 220px;
+    overflow: hidden;
+    margin: -2rem 0 0;
+
+    .inner {
+      margin: 0 0 -2rem;
+    }
+
+    .content {
+      animation: turnRightMarquee 5s linear infinite;
+      background-color: v.$primary;
+    }
+  }
+
+  .separate {
+    padding: 0 8px;
+    font-size: 16rem;
+  }
+
+  .empMargin {
+    padding: 0 8px;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @-webkit-keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes turnRightMarquee {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @-webkit-keyframes turnRightMarquee {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+</style>

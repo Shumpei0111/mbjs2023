@@ -2,32 +2,64 @@
 import Marquee from "../common/marquee.astro";
 import Menulist from "../common/menulist.astro";
 
+const mailAddress = "shumpei.o.7g@gmail.com";
+const param =
+  "subject=%E3%80%90MB.js%E3%80%91%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B";
+const mailTo = "mailto:" + mailAddress + "?" + param;
+
 const now = new Date();
 const year = now.getFullYear();
 const COPY_RIGHT = `MB.js | copyright 2019-${year} Shumpei All Rights Reserved.`;
 ---
 
-<footer>
-  <div data-marquee="contact" class="width-100">
-    <Marquee text="CONTACT US HERE!" isShowSeparate={false} />
+<footer class="relative">
+  <div class="marqueeWrapper">
+    <div class="marqueeContainer">
+      <div data-marquee="contact" class="width-100">
+        <Marquee text="CONTACT US HERE!" isShowSeparate={false} />
+      </div>
+      <div class="contactContainer">
+        <a class="mail" href={mailTo} target="_blank" rel="noopener"
+          >shumpei<span class="dot"></span>o<span class="dot"></span>7g<span
+            class="atmark"></span>gmail<span class="dot"></span>com<p
+            class="hand"
+          >
+            👋
+          </p></a
+        >
+      </div>
+      <div data-marquee="enjoy" class="width-100">
+        <Marquee
+          text="ENJOY MAKING IT."
+          isShowSeparate={false}
+          isBelt={true}
+          client:load
+        />
+      </div>
+    </div>
   </div>
-  <div data-marquee="enjoy" class="width-100">
-    <Marquee
-      text="ENJOY MAKING IT."
-      isShowSeparate={false}
-      isBelt={true}
-      client:load
-    />
-  </div>
-  <div class="flex align-center">
-    <Menulist className="footer-menu" />
+  <div class="flex align-center footerMenuWrapper">
+    <Menulist className="footerMenu" />
     <div class="flex copyright">
       <address translate="no">{COPY_RIGHT}</address>
     </div>
   </div>
 </footer>
 
-<style>
+<style lang="scss">
+  @use "../../style/variables.scss" as v;
+  .marqueeWrapper {
+    position: relative;
+    /* margin: 0 calc(50% - 50vw);
+    width: 100vw; */
+  }
+
+  .footerMenuWrapper {
+    margin: 30rem 0 10rem;
+    justify-content: space-between;
+    align-items: baseline !important;
+  }
+
   .copyright {
     text-transform: uppercase;
     font-size: 1.6rem;
@@ -40,5 +72,71 @@ const COPY_RIGHT = `MB.js | copyright 2019-${year} Shumpei All Rights Reserved.`
 
   .width-100 {
     width: 100%;
+  }
+
+  .contactContainer {
+    margin: 20rem 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .mail {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 12rem;
+      text-decoration: none;
+      transition: 0.2s;
+
+      &:hover {
+        color: white;
+
+        .dot,
+        .atmark {
+          color: white;
+        }
+      }
+
+      &::after {
+        content: "";
+        width: 100%;
+        display: block;
+        border-top: 1px solid;
+        margin-top: -4rem;
+      }
+    }
+  }
+
+  .dot {
+    transition: 0.2s;
+    &:after {
+      content: ".";
+      font-size: 12rem;
+    }
+  }
+
+  .atmark {
+    transition: 0.2s;
+    &:after {
+      content: "@";
+      font-size: 12rem;
+    }
+  }
+
+  .hand {
+    display: block;
+    font-size: 10rem;
+    transform-origin: center bottom;
+    animation: hand 2s linear infinite;
+  }
+
+  @keyframes hand {
+    0%,
+    100% {
+      transform: rotate(3deg);
+    }
+    50% {
+      transform: rotate(-3deg);
+    }
   }
 </style>

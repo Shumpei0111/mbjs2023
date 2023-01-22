@@ -73,7 +73,6 @@ const { text, isShowSeparate, isBelt } = Astro.props;
   $parent &&
     setTimeout(() => {
       $parent.style.width = `${window.outerWidth + window.innerWidth}px`;
-      $parent.style.display = `block`;
     }, 20);
 </script>
 
@@ -83,6 +82,7 @@ const { text, isShowSeparate, isBelt } = Astro.props;
     &.container {
       .inner {
         background-color: v.$primary;
+        height: 240px;
 
         .content {
           color: black;
@@ -99,9 +99,10 @@ const { text, isShowSeparate, isBelt } = Astro.props;
     .inner {
       margin: 2rem 0;
       overflow: hidden;
-      height: 100%;
       display: flex;
       align-items: center;
+      border-bottom: 1px solid v.$primary;
+      height: 180px;
     }
 
     .content {
@@ -115,7 +116,6 @@ const { text, isShowSeparate, isBelt } = Astro.props;
   }
 
   .parent {
-    display: none;
     border: 1px solid black;
     transform: rotate(8deg);
     overflow: hidden;
@@ -129,13 +129,13 @@ const { text, isShowSeparate, isBelt } = Astro.props;
 
   .turnRight {
     width: 200vw;
-    bottom: 0;
-    height: 220px;
+    height: 240px;
     overflow: hidden;
-    margin: -2rem 0 0;
+    // margin: -2rem calc(100vw - 50%) 0;
 
     .inner {
       margin: 0 0 -2rem;
+      height: 240px;
     }
 
     .content {

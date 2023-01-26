@@ -68,14 +68,6 @@ const { text, isShowSeparate, isBelt } = Astro.props;
   }
 </div>
 
-<script>
-  const $parent = document.getElementById("parent");
-  $parent &&
-    setTimeout(() => {
-      $parent.style.width = `${window.outerWidth + window.innerWidth}px`;
-    }, 20);
-</script>
-
 <style lang="scss">
   @use "../../style/variables.scss" as v;
   .belt {
@@ -120,18 +112,17 @@ const { text, isShowSeparate, isBelt } = Astro.props;
     transform: rotate(8deg);
     overflow: hidden;
     height: 240px;
-    right: -100vw;
+    right: -50%;
     bottom: -10rem;
+    width: 200vw;
     position: absolute;
     background-color: v.$primary;
-    margin: 0 calc(100vw - 50%);
   }
 
   .turnRight {
     width: 200vw;
     height: 240px;
     overflow: hidden;
-    // margin: -2rem calc(100vw - 50%) 0;
 
     .inner {
       margin: 0 0 -2rem;

@@ -3,6 +3,8 @@ import Fv from "@/components/top/fv.astro";
 import SectionBg from "@/components/top/sectionBg.astro";
 import Layout from "../layouts/Layout.astro";
 import Marquee from "@/components/common/marquee.astro";
+
+import { websiteArtworks } from "@/lib/project";
 ---
 
 <Layout title="MB.js">
@@ -13,9 +15,50 @@ import Marquee from "@/components/common/marquee.astro";
       <h3>
         <SectionBg genre="WEBSITE" />
       </h3>
+      <div class="articleWrapper">
+        {
+          websiteArtworks.map((item) => (
+            <article class="workArticle">
+              <p class="title">{item.title}</p>
+              <p class="genre">{item.genre}</p>
+              <p class="description">{item.description}</p>
+              <p class="caption">Front-End : {item.stack.fontEnd}</p>
+              <p class="caption">Infra : {item.stack.infra}</p>
+              <p class="caption">Period : {item.stack.period}</p>
+              <div class="flex responsibleWrapper">
+                <p>Responsible :&nbsp;</p>
+                <ul class="flex responsibleListWrapper">
+                  {item.stack.responsible.map((res, ind) =>
+                    ind !== item.stack.responsible.length - 1 &&
+                    item.githubURL ? (
+                      <li class="responsibleItem">{res}&nbsp;/&nbsp;</li>
+                    ) : (
+                      <li class="responsibleItem">{res}</li>
+                    )
+                  )}
+                  <li class="responsibleItem">
+                    <span>&nbsp;/&nbsp;</span>
+                    {item.githubURL && (
+                      <a
+                        href={item.githubURL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                  </li>
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </section>
     <section>
-      <SectionBg genre="DOUJIN" />
+      <h3>
+        <SectionBg genre="DOUJIN" />
+      </h3>
     </section>
     <section>
       <h3>
@@ -29,5 +72,48 @@ import Marquee from "@/components/common/marquee.astro";
   @use "../style/variables.scss" as v;
   h3 {
     line-height: 1;
+  }
+
+  .articleWrapper {
+    display: flex;
+    gap: 103px;
+    justify-content: space-between;
+  }
+
+  .workArticle {
+    font-family: YuMincho, "Yu Mincho", serif;
+    width: 530px;
+    line-height: 2;
+  }
+
+  .title {
+    font-size: 3rem;
+    margin-bottom: 12px;
+  }
+
+  .genre {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+  }
+
+  .description {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    padding: 16px 0;
+    font-size: 1.4rem;
+    margin-bottom: 32px;
+  }
+
+  .responsibleWrapper {
+    align-items: baseline;
+  }
+
+  .responsibleListWrapper {
+    margin: 0;
+  }
+
+  .caption,
+  .responsibleItem {
+    font-size: 1.4rem;
   }
 </style>

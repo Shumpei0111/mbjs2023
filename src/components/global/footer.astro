@@ -29,12 +29,7 @@ const COPY_RIGHT = `MB.js | copyright 2019-${year} Shumpei All Rights Reserved.`
         >
       </div>
       <div data-marquee="enjoy" class="width-100">
-        <Marquee
-          text="ENJOY MAKING IT."
-          isShowSeparate={false}
-          isBelt={true}
-          client:load
-        />
+        <Marquee text="ENJOY MAKING IT." isShowSeparate={false} isBelt={true} />
       </div>
     </div>
   </div>
@@ -50,8 +45,6 @@ const COPY_RIGHT = `MB.js | copyright 2019-${year} Shumpei All Rights Reserved.`
   @use "../../style/variables.scss" as v;
   .marqueeWrapper {
     position: relative;
-    /* margin: 0 calc(50% - 50vw);
-    width: 100vw; */
   }
 
   .footerMenuWrapper {

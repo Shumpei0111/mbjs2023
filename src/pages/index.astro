@@ -4,7 +4,7 @@ import SectionBg from "@/components/top/sectionBg.astro";
 import Layout from "../layouts/Layout.astro";
 import Marquee from "@/components/common/marquee.astro";
 
-import { websiteArtworks } from "@/lib/project";
+import { websiteArtworks, doujinArtworks } from "@/lib/project";
 ---
 
 <Layout title="MB.js">
@@ -27,7 +27,7 @@ import { websiteArtworks } from "@/lib/project";
               <p class="caption">Period : {item.stack.period}</p>
               <div class="flex responsibleWrapper">
                 <p>Responsible :&nbsp;</p>
-                <ul class="flex responsibleListWrapper">
+                <ul class="flex responsibleListWrapper align-center">
                   {item.stack.responsible.map((res, ind) =>
                     ind !== item.stack.responsible.length - 1 &&
                     item.githubURL ? (
@@ -59,6 +59,70 @@ import { websiteArtworks } from "@/lib/project";
       <h3>
         <SectionBg genre="DOUJIN" />
       </h3>
+      <div>
+        <p>同人活動「なな爺」名義にて活動中</p>
+        <div>
+          <p>
+            【ファッションイラスト×アニメ】をコンセプトに、同人サークル「1月の朝」で<br
+            />
+            ガルパン（ガールズアンドパンツァー）やプリキュアなどの二次創作をしています。<br
+            />
+            アナログ感のある、ガーリーでちょっとクラシカルなイラストを制作しています。
+          </p>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="doujinSideWrapper">
+          <div class="marginAuto">
+            <div class="side-scroll-area">
+              <div class="doujinWrapper side-scroll-wrap">
+                {
+                  doujinArtworks.map((item) => (
+                    <article class="workArticle side-scroll-item">
+                      <p class="title">{item.title}</p>
+                      <div class="description">
+                        <p>Event: {item.eventName}</p>
+                        <p class="genre">GENRE: {item.genre}</p>
+                        <p>{item.description}</p>
+                      </div>
+                      <div class="flex responsibleWrapper">
+                        {Array.isArray(item.stack) ? (
+                          <ul class="responsibleListWrapper">
+                            {item.stack.map((stack) => (
+                              <li>
+                                {stack.productType} * {stack.productCount}
+                                <ul>
+                                  {Array.isArray(stack.productStack) &&
+                                    stack.productStack.map((s) => (
+                                      <li class="stackList">- {s}</li>
+                                    ))}
+                                </ul>
+                                {typeof stack.productStack === "string" && (
+                                  <p class="stackList">
+                                    - {stack.productStack}
+                                  </p>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <ul class="responsibleListWrapper">
+                            <li>
+                              {item.stack.productType} *{" "}
+                              {item.stack.productCount}
+                            </li>
+                          </ul>
+                        )}
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="doujinSideBg"></div>
+      </div>
     </section>
     <section>
       <h3>
@@ -68,14 +132,25 @@ import { websiteArtworks } from "@/lib/project";
   </main>
 </Layout>
 
+<script>
+  import sideScroll from "../lib/sideScroll";
+
+  sideScroll();
+</script>
+
 <style lang="scss">
   @use "../style/variables.scss" as v;
   h3 {
     line-height: 1;
   }
 
+  section {
+    margin-bottom: 200px;
+  }
+
   .articleWrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 103px;
     justify-content: space-between;
   }
@@ -106,6 +181,51 @@ import { websiteArtworks } from "@/lib/project";
 
   .responsibleWrapper {
     align-items: baseline;
+  }
+
+  #doujinSideBg {
+    background-color: v.$primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 calc(-50vw + 50%);
+    width: 100vh;
+    z-index: -1;
+  }
+
+  .doujinSideWrapper {
+    background-color: v.$primary;
+  }
+
+  .marginAuto {
+    margin: 0 0 calc(-50vw + 50%);
+  }
+
+  .doujinWrapper {
+    background-color: v.$primary;
+    display: flex;
+    flex-wrap: nowrap;
+    // overflow-x: hidden;
+    gap: 0 50px;
+    height: 100vh;
+
+    & * {
+      color: black;
+    }
+
+    .workArticle {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+      &:not(:first-of-type) {
+        padding: 0 32px;
+      }
+    }
+  }
+
+  .stackList {
+    padding-left: 1rem;
   }
 
   .responsibleListWrapper {

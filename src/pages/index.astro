@@ -3,6 +3,7 @@ import Fv from "@/components/top/fv.astro";
 import SectionBg from "@/components/top/sectionBg.astro";
 import Layout from "../layouts/Layout.astro";
 import Marquee from "@/components/common/marquee.astro";
+import { Picture } from "astro-imagetools/components";
 
 import { websiteArtworks, doujinArtworks } from "@/lib/project";
 ---
@@ -19,6 +20,24 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
         {
           websiteArtworks.map((item) => (
             <article class="workArticle">
+              <div class="cover">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  tabindex="1"
+                  rel="noopener noreferrer"
+                >
+                  <Picture
+                    src={item.imagePath}
+                    alt={item.title}
+                    width={530}
+                    height={530}
+                    preload="webp"
+                    loading="lazy"
+                    objectPosition={"50% 0%"}
+                  />
+                </a>
+              </div>
               <p class="title">{item.title}</p>
               <p class="genre">{item.genre}</p>
               <p class="description">{item.description}</p>

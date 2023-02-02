@@ -2,6 +2,8 @@ type Website = {
   title: string;
   genre: string;
   description: string;
+  imagePath: string;
+  url: string;
   stack: {
     fontEnd: string;
     infra: string;
@@ -33,6 +35,8 @@ export const websiteArtworks: Website[] = [
     genre: "「上伊那ぼたん、酔へる姿は百合の花」ファンサイト",
     description:
       "秋田書店マンガクロスで現在連載中の「上伊那ぼたん、酔へる姿は百合の花」を応援するために作成したファンサイト。",
+    imagePath: "/images/kamiinabotan-site.png",
+    url: "",
     stack: {
       fontEnd: "React (Next.js)",
       infra: "Vercel",
@@ -46,6 +50,8 @@ export const websiteArtworks: Website[] = [
     genre: "Webサイト",
     description:
       "Twitter上の企画：星駆web制作企画に参加。「お化け屋敷」と簡単な設定をもとに、約1ヶ月で調査、コンセプト作成、デザイン、実装、ライティングまで独自で行う。",
+    imagePath: "/images/pj_obake-lp.jpg",
+    url: "",
     stack: {
       fontEnd: "React",
       infra: "Firebase Hosting",
@@ -59,6 +65,8 @@ export const websiteArtworks: Website[] = [
     genre: "Webサイト",
     description:
       "１週間でWebサービスを作るイベント#web1week に参加。「世界のリゾート地にあるライブカメラでリゾート気分を味わう」をコンセプトに制作。",
+    imagePath: "/images/pj_present-resort-point.jpg",
+    url: "",
     stack: {
       fontEnd: "React",
       infra: "Netlify",
@@ -72,6 +80,8 @@ export const websiteArtworks: Website[] = [
     genre: "LPサイト",
     description:
       "Twitter上の企画：架空の10代〜20代向けメンズコスメブランド「VILLAINS HOMME（ヴィランズ オム）」のLP。",
+    imagePath: "/images/pj_villains-homme.jpg",
+    url: "",
     stack: {
       fontEnd: "pug / scss",
       infra: "Firebase Hosting",

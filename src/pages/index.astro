@@ -59,8 +59,8 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
       <h3>
         <SectionBg genre="DOUJIN" />
       </h3>
-      <div>
-        <p>同人活動「なな爺」名義にて活動中</p>
+      <div class="whatsActive">
+        <p class="whatsActiveHead">同人活動「なな爺」名義にて活動中</p>
         <div>
           <p>
             【ファッションイラスト×アニメ】をコンセプトに、同人サークル「1月の朝」で<br
@@ -73,46 +73,48 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
       </div>
       <div class="relative">
         <div class="doujinSideWrapper">
-          <div class="marginAuto">
+          <div class="adjust">
             <div class="side-scroll-area">
               <div class="doujinWrapper side-scroll-wrap">
                 {
-                  doujinArtworks.map((item) => (
+                  doujinArtworks.map((item, ind) => (
                     <article class="workArticle side-scroll-item">
-                      <p class="title">{item.title}</p>
-                      <div class="description">
-                        <p>Event: {item.eventName}</p>
-                        <p class="genre">GENRE: {item.genre}</p>
-                        <p>{item.description}</p>
-                      </div>
-                      <div class="flex responsibleWrapper">
-                        {Array.isArray(item.stack) ? (
-                          <ul class="responsibleListWrapper">
-                            {item.stack.map((stack) => (
+                      <div class="workArticleInner">
+                        <p class="title">{item.title}</p>
+                        <div class="description">
+                          <p>Event: {item.eventName}</p>
+                          <p class="genre">GENRE: {item.genre}</p>
+                          <p>{item.description}</p>
+                        </div>
+                        <div class="flex responsibleWrapper">
+                          {Array.isArray(item.stack) ? (
+                            <ul class="responsibleListWrapper">
+                              {item.stack.map((stack) => (
+                                <li>
+                                  {stack.productType} * {stack.productCount}
+                                  <ul>
+                                    {Array.isArray(stack.productStack) &&
+                                      stack.productStack.map((s) => (
+                                        <li class="stackList">- {s}</li>
+                                      ))}
+                                  </ul>
+                                  {typeof stack.productStack === "string" && (
+                                    <p class="stackList">
+                                      - {stack.productStack}
+                                    </p>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <ul class="responsibleListWrapper">
                               <li>
-                                {stack.productType} * {stack.productCount}
-                                <ul>
-                                  {Array.isArray(stack.productStack) &&
-                                    stack.productStack.map((s) => (
-                                      <li class="stackList">- {s}</li>
-                                    ))}
-                                </ul>
-                                {typeof stack.productStack === "string" && (
-                                  <p class="stackList">
-                                    - {stack.productStack}
-                                  </p>
-                                )}
+                                {item.stack.productType} *{" "}
+                                {item.stack.productCount}
                               </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <ul class="responsibleListWrapper">
-                            <li>
-                              {item.stack.productType} *{" "}
-                              {item.stack.productCount}
-                            </li>
-                          </ul>
-                        )}
+                            </ul>
+                          )}
+                        </div>
                       </div>
                     </article>
                   ))
@@ -121,7 +123,6 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
             </div>
           </div>
         </div>
-        <div id="doujinSideBg"></div>
       </div>
     </section>
     <section>
@@ -183,30 +184,32 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
     align-items: baseline;
   }
 
-  #doujinSideBg {
-    background-color: v.$primary;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0 calc(-50vw + 50%);
-    width: 100vh;
-    z-index: -1;
+  .whatsActive {
+    margin-bottom: 44px;
+    line-height: 2;
+  }
+
+  .whatsActiveHead {
+    font-size: 3rem;
+    display: inline-block;
+    border-bottom: 2px solid;
+    margin-bottom: 24px;
   }
 
   .doujinSideWrapper {
     background-color: v.$primary;
   }
 
-  .marginAuto {
-    margin: 0 0 calc(-50vw + 50%);
+  .adjust {
+    position: relative;
+    margin: 0 calc(-50vw + 50%) 0;
+    background-color: v.$primary;
   }
 
   .doujinWrapper {
     background-color: v.$primary;
     display: flex;
     flex-wrap: nowrap;
-    // overflow-x: hidden;
-    gap: 0 50px;
     height: 100vh;
 
     & * {
@@ -217,10 +220,15 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
+      height: calc(100vh - 4rem);
+      border-bottom: 2px solid #000;
+      background-color: v.$primary;
+    }
 
-      &:not(:first-of-type) {
-        padding: 0 32px;
-      }
+    .workArticleInner {
+      max-width: 680px;
+      padding: 0 32px;
+      height: 100vh;
     }
   }
 

@@ -13,7 +13,7 @@ const sideScroll = () => {
     gsap.set(items, { width: 100 / num + "%" });
 
     gsap.to(items, {
-      xPercent: -110 * (num - 1), // x方向に移動させる
+      xPercent: -100 * (num - 1), // x方向に移動させる
       ease: "none",
       scrollTrigger: {
         trigger: area,
@@ -23,14 +23,6 @@ const sideScroll = () => {
         scrub: true,
       },
     });
-
-    const bg = document.getElementById("doujinSideBg");
-    const pinSpacer = document.querySelector(".pin-spacer");
-    if (bg && pinSpacer) {
-      console.log(pinSpacer.clientHeight);
-
-      bg.style.height = `${pinSpacer.clientHeight}px`;
-    }
   });
 };
 

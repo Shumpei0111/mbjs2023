@@ -6,6 +6,21 @@ import Marquee from "@/components/common/marquee.astro";
 import { Picture } from "astro-imagetools/components";
 
 import { websiteArtworks, doujinArtworks } from "@/lib/project";
+
+type ImageObj = {
+  width: number;
+  height: number;
+};
+
+const workImage: ImageObj = {
+  width: 530,
+  height: 530,
+};
+
+const doujinWorkImage: ImageObj = {
+  width: 430,
+  height: 600,
+};
 ---
 
 <Layout title="MB.js">
@@ -27,56 +42,64 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
                   tabindex="1"
                   rel="noopener noreferrer"
                 >
-                  <Picture
-                    src={item.coverImagePath}
-                    alt={item.title}
-                    width={530}
-                    height={530}
-                    preload="webp"
-                    loading="lazy"
-                    objectPosition={"50% 0%"}
-                  />
-                  <Picture
-                    src={item.imagePath}
-                    alt={item.title}
-                    width={530}
-                    height={530}
-                    preload="webp"
-                    loading="lazy"
-                    objectPosition={"50% 0%"}
-                  />
+                  <span class="articleImageWrapper">
+                    <span class="itemImageCover">
+                      <Picture
+                        src={item.coverImagePath}
+                        alt={item.title}
+                        width={workImage.width}
+                        height={workImage.height}
+                        preload="webp"
+                        loading="lazy"
+                        objectPosition={"50% 0%"}
+                      />
+                    </span>
+                    <span class="itemImage">
+                      <Picture
+                        src={item.imagePath}
+                        alt={item.title}
+                        width={workImage.width}
+                        height={workImage.height}
+                        preload="webp"
+                        loading="lazy"
+                        objectPosition={"50% 0%"}
+                      />
+                    </span>
+                  </span>
                 </a>
               </div>
               <p class="title">{item.title}</p>
               <p class="genre">{item.genre}</p>
-              <p class="description">{item.description}</p>
-              <p class="caption">Front-End : {item.stack.fontEnd}</p>
-              <p class="caption">Infra : {item.stack.infra}</p>
-              <p class="caption">Period : {item.stack.period}</p>
-              <div class="flex responsibleWrapper">
-                <p>Responsible :&nbsp;</p>
-                <ul class="flex responsibleListWrapper align-center">
-                  {item.stack.responsible.map((res, ind) =>
-                    ind !== item.stack.responsible.length - 1 &&
-                    item.githubURL ? (
-                      <li class="responsibleItem">{res}&nbsp;/&nbsp;</li>
-                    ) : (
-                      <li class="responsibleItem">{res}</li>
-                    )
-                  )}
-                  <li class="responsibleItem">
-                    <span>&nbsp;/&nbsp;</span>
-                    {item.githubURL && (
-                      <a
-                        href={item.githubURL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        GitHub
-                      </a>
+              <div class="hiddenField">
+                <p class="description">{item.description}</p>
+                <p class="caption">Front-End : {item.stack.fontEnd}</p>
+                <p class="caption">Infra : {item.stack.infra}</p>
+                <p class="caption">Period : {item.stack.period}</p>
+                <div class="flex responsibleWrapper">
+                  <p>Responsible :&nbsp;</p>
+                  <ul class="flex responsibleListWrapper align-center">
+                    {item.stack.responsible.map((res, ind) =>
+                      ind !== item.stack.responsible.length - 1 &&
+                      item.githubURL ? (
+                        <li class="responsibleItem">{res}&nbsp;/&nbsp;</li>
+                      ) : (
+                        <li class="responsibleItem">{res}</li>
+                      )
                     )}
-                  </li>
-                </ul>
+                    <li class="responsibleItem">
+                      <span>&nbsp;/&nbsp;</span>
+                      {item.githubURL && (
+                        <a
+                          href={item.githubURL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          GitHub
+                        </a>
+                      )}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </article>
           ))
@@ -107,25 +130,40 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
                 {
                   doujinArtworks.map((item, ind) => (
                     <article class="workArticle side-scroll-item">
+                      <div class="dojinCover">
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          tabindex="1"
+                          rel="noopener noreferrer"
+                        >
+                          <span class="articleImageWrapper">
+                            <span class="itemImageCover">
+                              <Picture
+                                src={item.coverImagePath}
+                                alt={item.title}
+                                width={doujinWorkImage.width}
+                                height={doujinWorkImage.height}
+                                preload="webp"
+                                loading="lazy"
+                                objectPosition={"50% 0%"}
+                              />
+                            </span>
+                            <span class="itemImage">
+                              <Picture
+                                src={item.imagePath}
+                                alt={item.title}
+                                width={doujinWorkImage.width}
+                                height={doujinWorkImage.height}
+                                preload="webp"
+                                loading="lazy"
+                                objectPosition={"50% 0%"}
+                              />
+                            </span>
+                          </span>
+                        </a>
+                      </div>
                       <div class="workArticleInner">
-                        <Picture
-                          src={item.coverImagePath}
-                          alt={item.title}
-                          width={530}
-                          height={530}
-                          preload="webp"
-                          loading="lazy"
-                          objectPosition={"50% 0%"}
-                        />
-                        <Picture
-                          src={item.imagePath}
-                          alt={item.title}
-                          width={530}
-                          height={530}
-                          preload="webp"
-                          loading="lazy"
-                          objectPosition={"50% 0%"}
-                        />
                         <p class="title">{item.title}</p>
                         <div class="description">
                           <p>Event: {item.eventName}</p>
@@ -181,8 +219,10 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
 
 <script>
   import sideScroll from "../lib/sideScroll";
+  import activeCoverDisable from "../lib/projectCoverImage";
 
   sideScroll();
+  activeCoverDisable();
 </script>
 
 <style lang="scss">
@@ -206,6 +246,28 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
     font-family: YuMincho, "Yu Mincho", serif;
     width: 530px;
     line-height: 2;
+  }
+
+  .itemImage {
+    display: none;
+  }
+
+  .hiddenField {
+    visibility: hidden;
+  }
+
+  .hiddenCover {
+    .itemImageCover {
+      display: none;
+    }
+
+    .itemImage {
+      display: block;
+    }
+  }
+
+  .cover:hover ~ .hiddenField {
+    visibility: visible;
   }
 
   .title {
@@ -269,12 +331,13 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
       height: calc(100vh - 4rem);
       border-bottom: 2px solid #000;
       background-color: v.$primary;
+      padding: 10rem 0;
     }
 
     .workArticleInner {
       max-width: 680px;
       padding: 0 32px;
-      height: 100vh;
+      margin-left: -200px;
     }
   }
 

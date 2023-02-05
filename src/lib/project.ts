@@ -3,6 +3,7 @@ type Website = {
   genre: string;
   description: string;
   imagePath: string;
+  coverImagePath: string;
   url: string;
   stack: {
     fontEnd: string;
@@ -24,6 +25,8 @@ type Doujin = {
   title: string;
   genre: string;
   description: string;
+  imagePath: string;
+  coverImagePath: string;
   stack: ProductType | ProductType[];
   url: string;
   release: string;
@@ -35,7 +38,8 @@ export const websiteArtworks: Website[] = [
     genre: "「上伊那ぼたん、酔へる姿は百合の花」ファンサイト",
     description:
       "秋田書店マンガクロスで現在連載中の「上伊那ぼたん、酔へる姿は百合の花」を応援するために作成したファンサイト。",
-    imagePath: "/images/kamiinabotan-site.png",
+    imagePath: "/images/project/kamiinabotan.png",
+    coverImagePath: "/images/project/cover-kamiinabotan.png",
     url: "",
     stack: {
       fontEnd: "React (Next.js)",
@@ -50,7 +54,8 @@ export const websiteArtworks: Website[] = [
     genre: "Webサイト",
     description:
       "Twitter上の企画：星駆web制作企画に参加。「お化け屋敷」と簡単な設定をもとに、約1ヶ月で調査、コンセプト作成、デザイン、実装、ライティングまで独自で行う。",
-    imagePath: "/images/pj_obake-lp.jpg",
+    imagePath: "/images/project/haiko.png",
+    coverImagePath: "/images/project/cover-haiko.png",
     url: "",
     stack: {
       fontEnd: "React",
@@ -65,7 +70,8 @@ export const websiteArtworks: Website[] = [
     genre: "Webサイト",
     description:
       "１週間でWebサービスを作るイベント#web1week に参加。「世界のリゾート地にあるライブカメラでリゾート気分を味わう」をコンセプトに制作。",
-    imagePath: "/images/pj_present-resort-point.jpg",
+    imagePath: "/images/project/resort.png",
+    coverImagePath: "/images/project/cover-resort.png",
     url: "",
     stack: {
       fontEnd: "React",
@@ -80,7 +86,8 @@ export const websiteArtworks: Website[] = [
     genre: "LPサイト",
     description:
       "Twitter上の企画：架空の10代〜20代向けメンズコスメブランド「VILLAINS HOMME（ヴィランズ オム）」のLP。",
-    imagePath: "/images/pj_villains-homme.jpg",
+    imagePath: "/images/project/villains.png",
+    coverImagePath: "/images/project/cover-villains.png",
     url: "",
     stack: {
       fontEnd: "pug / scss",
@@ -99,6 +106,8 @@ export const doujinArtworks: Doujin[] = [
     genre: "ガールズ&パンツァー",
     description:
       "西 × ダジ本。相手を好きな気持ちに理由なんてない。そんな感情をぶつける2人の乙女の話。他、ポストカード数種と色紙",
+    imagePath: "/images/project/wakenai.png",
+    coverImagePath: "/images/project/cover-wakenai.png",
     stack: [
       {
         productType: "同人誌",
@@ -125,6 +134,8 @@ export const doujinArtworks: Doujin[] = [
     genre: "ガールズ&パンツァー",
     description:
       "西 × ダジ本。『ガールズ＆パンツァー 劇場版』後、親密になった彼女らのデートの様子を描きました。",
+    imagePath: "/images/project/date.png",
+    coverImagePath: "/images/project/cover-date.png",
     stack: {
       productType: "同人誌",
       productCount: 1,
@@ -140,6 +151,8 @@ export const doujinArtworks: Doujin[] = [
     genre: "艦隊これくしょん−艦これ−",
     description:
       "大本営から「鎮守府をPRセヨ」という命令が与えられた鎮守府。秘書艦の鳥海に押し付けたら、他の艦娘の協力もあって無事PR動画！...と思われたが。",
+    imagePath: "/images/project/kancolle.png",
+    coverImagePath: "/images/project/cover-kancolle.png",
     stack: {
       productType: "同人誌",
       productCount: 1,

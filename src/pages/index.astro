@@ -28,6 +28,15 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
                   rel="noopener noreferrer"
                 >
                   <Picture
+                    src={item.coverImagePath}
+                    alt={item.title}
+                    width={530}
+                    height={530}
+                    preload="webp"
+                    loading="lazy"
+                    objectPosition={"50% 0%"}
+                  />
+                  <Picture
                     src={item.imagePath}
                     alt={item.title}
                     width={530}
@@ -99,6 +108,24 @@ import { websiteArtworks, doujinArtworks } from "@/lib/project";
                   doujinArtworks.map((item, ind) => (
                     <article class="workArticle side-scroll-item">
                       <div class="workArticleInner">
+                        <Picture
+                          src={item.coverImagePath}
+                          alt={item.title}
+                          width={530}
+                          height={530}
+                          preload="webp"
+                          loading="lazy"
+                          objectPosition={"50% 0%"}
+                        />
+                        <Picture
+                          src={item.imagePath}
+                          alt={item.title}
+                          width={530}
+                          height={530}
+                          preload="webp"
+                          loading="lazy"
+                          objectPosition={"50% 0%"}
+                        />
                         <p class="title">{item.title}</p>
                         <div class="description">
                           <p>Event: {item.eventName}</p>

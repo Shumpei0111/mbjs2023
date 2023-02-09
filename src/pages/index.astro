@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import Marquee from "@/components/common/marquee.astro";
 import { Picture } from "astro-imagetools/components";
 
-import { websiteArtworks, doujinArtworks } from "@/lib/project";
+import { websiteArtworks, doujinArtworks, otherArtworks } from "@/lib/project";
 
 type ImageObj = {
   width: number;
@@ -20,6 +20,11 @@ const workImage: ImageObj = {
 const doujinWorkImage: ImageObj = {
   width: 430,
   height: 600,
+};
+
+const otherImage: ImageObj = {
+  width: 530,
+  height: 530,
 };
 ---
 
@@ -72,7 +77,7 @@ const doujinWorkImage: ImageObj = {
               <p class="genre">{item.genre}</p>
               <div class="hiddenField">
                 <p class="description">{item.description}</p>
-                <p class="caption">Front-End : {item.stack.fontEnd}</p>
+                <p class="caption">Front-End : {item.stack.frontEnd}</p>
                 <p class="caption">Infra : {item.stack.infra}</p>
                 <p class="caption">Period : {item.stack.period}</p>
                 <div class="flex responsibleWrapper">
@@ -213,6 +218,80 @@ const doujinWorkImage: ImageObj = {
       <h3>
         <SectionBg genre="OTHER" />
       </h3>
+      <div class="articleWrapper">
+        {
+          otherArtworks.map((item) => (
+            <article class="workArticle">
+              <div class="cover">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  tabindex="1"
+                  rel="noopener noreferrer"
+                >
+                  <span class="articleImageWrapper">
+                    <span class="itemImageCover">
+                      <Picture
+                        src={item.coverImagePath}
+                        alt={item.title}
+                        width={otherImage.width}
+                        height={otherImage.height}
+                        preload="webp"
+                        loading="lazy"
+                        objectPosition={"50% 0%"}
+                      />
+                    </span>
+                    <span class="itemImage">
+                      <Picture
+                        src={item.imagePath}
+                        alt={item.title}
+                        width={otherImage.width}
+                        height={otherImage.height}
+                        preload="webp"
+                        loading="lazy"
+                        objectPosition={"50% 0%"}
+                      />
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <p class="title">{item.title}</p>
+              <p class="genre">{item.genre}</p>
+              <div class="hiddenField">
+                <p class="description">{item.description}</p>
+                <p class="caption">Front-End : {item.stack.frontEnd}</p>
+                <p class="caption">Infra : {item.stack.infra}</p>
+                <p class="caption">Period : {item.stack.period}</p>
+                <div class="flex responsibleWrapper">
+                  <p>Responsible :&nbsp;</p>
+                  <ul class="flex responsibleListWrapper align-center">
+                    {item.stack.responsible.map((res, ind) =>
+                      ind !== item.stack.responsible.length - 1 &&
+                      item.githubURL ? (
+                        <li class="responsibleItem">{res}&nbsp;/&nbsp;</li>
+                      ) : (
+                        <li class="responsibleItem">{res}</li>
+                      )
+                    )}
+                    <li class="responsibleItem">
+                      <span>&nbsp;/&nbsp;</span>
+                      {item.githubURL && (
+                        <a
+                          href={item.githubURL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          GitHub
+                        </a>
+                      )}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </section>
   </main>
 </Layout>

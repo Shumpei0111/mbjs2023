@@ -6,7 +6,7 @@ type Website = {
   coverImagePath: string;
   url: string;
   stack: {
-    fontEnd: string;
+    frontEnd: string;
     infra: string;
     period: string;
     responsible: string[];
@@ -32,6 +32,8 @@ type Doujin = {
   release: string;
 };
 
+type Other = Website;
+
 export const websiteArtworks: Website[] = [
   {
     title: "百合に酔う。",
@@ -42,7 +44,7 @@ export const websiteArtworks: Website[] = [
     coverImagePath: "/images/project/cover-kamiinabotan.png",
     url: "",
     stack: {
-      fontEnd: "React (Next.js)",
+      frontEnd: "React (Next.js)",
       infra: "Vercel",
       period: "1.5months",
       responsible: "企画、デザイン、ライティング、実装".split("、"),
@@ -58,7 +60,7 @@ export const websiteArtworks: Website[] = [
     coverImagePath: "/images/project/cover-haiko.png",
     url: "",
     stack: {
-      fontEnd: "React",
+      frontEnd: "React",
       infra: "Firebase Hosting",
       period: "1month",
       responsible: "企画、調査、デザイン、ライティング、実装".split("、"),
@@ -74,7 +76,7 @@ export const websiteArtworks: Website[] = [
     coverImagePath: "/images/project/cover-resort.png",
     url: "",
     stack: {
-      fontEnd: "React",
+      frontEnd: "React",
       infra: "Netlify",
       period: "1week",
       responsible: "企画、調査、デザイン、実装".split("、"),
@@ -90,7 +92,7 @@ export const websiteArtworks: Website[] = [
     coverImagePath: "/images/project/cover-villains.png",
     url: "",
     stack: {
-      fontEnd: "pug / scss",
+      frontEnd: "pug / scss",
       infra: "Firebase Hosting",
       period: "1month",
       responsible: "調査、デザイン(LP、パッケージ、ロゴ)、実装".split("、"),
@@ -161,5 +163,24 @@ export const doujinArtworks: Doujin[] = [
     },
     url: "https://www.pixiv.net/artworks/55104947",
     release: "2016.02.05",
+  },
+];
+
+export const otherArtworks: Other[] = [
+  {
+    title: "シンプル文字数カウンター",
+    genre: "Chrome拡張",
+    description:
+      "Google Chrome用拡張機能を作成。入力欄に文字を入力すると文字数のカウントと、入力した最新の文字列を保存することができる。閉じると入力した文字が消えるので、「読み込み」をクリックすると保存した文字列が入力欄に挿入されます。",
+    imagePath: "/images/project/counter.png",
+    coverImagePath: "/images/project/cover-counter.png",
+    url: "https://github.com/Shumpei0111/simple_word_count",
+    stack: {
+      frontEnd: "HTML / CSS / Vanilla.js",
+      infra: "local",
+      period: "3日",
+      responsible: "デザイン、実装".split("、"),
+    },
+    githubURL: "https://github.com/Shumpei0111/simple_word_count",
   },
 ];
